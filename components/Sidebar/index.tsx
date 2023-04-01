@@ -19,7 +19,7 @@ const Sidebar = ({ children }: SidebarProps) => {
       <div className="fixed w-20 h-screen p-4 bg-white dark:bg-zinc-900 border-r-[1px] border-gray-300 dark:border-zinc-700 flex flex-col justify-between">
         <div className="flex flex-col items-center">
           <Link href="/add">
-            <div className="bg-slate-400 dark:bg-slate-800 hover:bg-gray-300 dark:hover:bg-zinc-800 rounded-lg inline-block p-3">
+            <div className="bg-orange-500 dark:bg-orange-500 hover:bg-gray-300 dark:hover:bg-zinc-800 rounded-lg inline-block p-3">
               <MdAdd size={20} />
             </div>
           </Link>
@@ -49,7 +49,7 @@ const Sidebar = ({ children }: SidebarProps) => {
         >
           <BiLogOut size={20} />
         </div>
-        {/* <ThemeSwitch /> */}
+        <ThemeSwitch />
       </div>
       <main className="ml-20 w-full">{children}</main>
     </div>

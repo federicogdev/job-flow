@@ -14,6 +14,12 @@ export default async function handler(
   try {
     const { currentUser } = await serverAuth(req);
 
+    const recentJobs = await prisma.job.findMany({
+      where: { userId: currentUser.id },
+      take: 6,
+      orderBy: { createdAt: "desc" },
+    });
+
     const jobs = await prisma.job.findMany({
       where: { userId: currentUser.id },
     });
@@ -47,6 +53,7 @@ export default async function handler(
       pending: pendingJobs,
       interview: interviewJobs,
       byMonth: jobsByMonth,
+      recent: recentJobs,
     });
   } catch (error) {
     return res.status(400).json({ error: `Something went wrong: ${error}` });

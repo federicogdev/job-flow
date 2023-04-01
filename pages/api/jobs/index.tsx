@@ -32,6 +32,7 @@ export default async function handler(
     if (req.method === "GET") {
       const jobs = await prisma.job.findMany({
         where: { userId: currentUser.id },
+        orderBy: { createdAt: "desc" },
       });
 
       return res.status(200).json(jobs);
