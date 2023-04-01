@@ -1,6 +1,6 @@
-import useOverview from "@/hooks/useOverview";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
+import React from "react";
 
 interface Props {}
 
@@ -21,9 +21,8 @@ export async function getServerSideProps(context: NextPageContext) {
   };
 }
 
-const HomePage = (props: Props) => {
-  const { data: overview, error, isLoading, mutate } = useOverview();
-  return <div className="min-h-screen"></div>;
+const ProfilePage = (props: Props) => {
+  return <div>Profile</div>;
 };
 
-export default HomePage;
+export default ProfilePage;
