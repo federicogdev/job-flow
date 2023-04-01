@@ -69,6 +69,7 @@ model Job {
   status   JobStatus @default(PENDING)
   type     JobType   @default(FULL_TIME)
   location String
+  position String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
