@@ -1,7 +1,7 @@
 import useJobApplicationModal from "@/hooks/useJobApplicationModal";
 import useOverview from "@/hooks/useOverview";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IoMdClose } from "react-icons/io";
 import * as z from "zod";
@@ -45,6 +45,7 @@ const JobApplicationModal = (props: Props) => {
     }
 
     setShowModal(false);
+    reset();
     setTimeout(() => {
       onClose();
     }, 300);
@@ -147,7 +148,6 @@ const JobApplicationModal = (props: Props) => {
                 rounded-t
                 justify-center
                 relative
-            
                 "
             >
               <button
@@ -157,120 +157,236 @@ const JobApplicationModal = (props: Props) => {
                     hover:opacity-70
                     transition
                     absolute
-                    right-9
+                    right-5
                   "
                 onClick={handleClose}
               >
                 <IoMdClose size={18} />
               </button>
-              <div className="text-lg font-semibold">{}</div>
+              <div className="text-lg font-semibold">Add a new application</div>
             </div>
             {/*body*/}
             <div className="relative p-6 flex-auto">
               <div className="flex flex-col gap-4">
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <h1>{loading ? "loading" : "not loading"}</h1>
-
-                  <div>
-                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                      First Name
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                      id="grid-first-name"
-                      type="text"
-                      placeholder="Jane"
-                    />
-                    <p className="text-red-500 text-xs italic">
-                      Please fill out this field.
-                    </p>
-                  </div>
-                  <div>
-                    <label htmlFor="company">Company</label>
-                    <input type="text" id="company" {...register("company")} />
-                    {errors?.company && <span>{errors.company.message}</span>}
-                  </div>
-
-                  <div>
-                    <label htmlFor="status">Status</label>
-                    <select id="status" {...register("status")}>
-                      <option value="PENDING">Pending</option>
-                      <option value="INTERVIEW">Interview</option>
-                      <option value="DECLINED">Declined</option>
-
-                      {errors?.status && <span>{errors.status.message}</span>}
-                    </select>
-                  </div>
-
-                  <fieldset>
-                    <legend>Status</legend>
-                    <label>
+                <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
+                  {/* POSITION CONTAINER */}
+                  <div className="flex flex-wrap -mx-3 mb-6">
+                    {/* POSITION */}
+                    <div className="w-full px-3">
+                      <label
+                        className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        htmlFor="position"
+                      >
+                        Position
+                      </label>
                       <input
-                        type="radio"
-                        {...register("status")}
-                        value="INTERVIEW"
+                        className={`appearance-none block w-full bg-gray-200  dark:bg-zinc-800 text-gray-700 dark:text-gray-400 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none
+                        ${
+                          errors.location
+                            ? "border-[#9E2A2B]"
+                            : "border-gray-300 dark:border-zinc-700"
+                        }
+                          ${
+                            errors.location
+                              ? "focus:border-[#9E2A2B]"
+                              : "focus:border-gray-300"
+                          }
+                        `}
+                        id="position"
+                        type="text"
+                        {...register("position")}
+                        placeholder="CEO, Intern, Senior Engineer...."
                       />
-                      Interview
-                    </label>
-
-                    <label>
+                      {errors?.position && (
+                        <p className="text-[#9E2A2B] text-xs italic">
+                          {errors.position.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  {/* COMPANY LOCATION CONTAINER */}
+                  <div className="flex flex-wrap -mx-3 mb-6">
+                    {/* COMPANY */}
+                    <div className="w-full md:w-1/2 px-3 mb-4">
+                      <label
+                        className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        htmlFor="company"
+                      >
+                        Company
+                      </label>
                       <input
-                        type="radio"
-                        {...register("status")}
-                        value="DECLINED"
+                        className={`appearance-none block w-full bg-gray-200 dark:bg-zinc-800 text-gray-700 dark:text-gray-400 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none 
+                        ${
+                          errors.company
+                            ? "border-[#9E2A2B]"
+                            : "border-gray-300 dark:border-zinc-700"
+                        }
+                        ${
+                          errors.company
+                            ? "focus:border-[#9E2A2B]"
+                            : "focus:border-gray-300"
+                        }
+                        `}
+                        id="company"
+                        type="text"
+                        placeholder="Apple, Google, ...."
+                        {...register("company")}
                       />
-                      Declined
-                    </label>
-
-                    <label>
+                      {errors?.company && (
+                        <p className="text-[#9E2A2B] text-xs italic">
+                          {errors.company.message}
+                        </p>
+                      )}
+                    </div>
+                    {/* LOCATION */}
+                    <div className="w-full md:w-1/2 px-3 mb-4">
+                      <label
+                        className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        htmlFor="location"
+                      >
+                        Location
+                      </label>
                       <input
-                        type="radio"
-                        {...register("status")}
-                        value="PENDING"
+                        className={`appearance-none block w-full bg-gray-200 dark:bg-zinc-800 text-gray-700 dark:text-gray-400 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none 
+                        ${
+                          errors.location
+                            ? "border-[#9E2A2B]"
+                            : "border-gray-300 dark:border-zinc-700"
+                        }
+                        ${
+                          errors.location
+                            ? "focus:border-[#9E2A2B]"
+                            : "focus:border-gray-300"
+                        }
+                        `}
+                        id="location"
+                        type="text"
+                        placeholder="1 Apple Park Way, Cupertino US"
+                        {...register("location")}
                       />
-                      Pending
-                    </label>
-                  </fieldset>
+                      {errors?.location && (
+                        <p className="text-[#9E2A2B] text-xs italic">
+                          {errors.location.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  {/* TYPE STATUS CONTAINER */}
+                  <div className="flex flex-wrap -mx-3 mb-2">
+                    {/* TYPE */}
+                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                      <label
+                        className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        htmlFor="type"
+                      >
+                        Type
+                      </label>
+                      <div className="relative">
+                        <select
+                          id="type"
+                          {...register("type")}
+                          className={`block appearance-none w-full bg-gray-200 dark:bg-zinc-800 border  text-gray-700 dark:text-gray-400 py-3 px-4 pr-8 mb-3 rounded leading-tight focus:outline-none
+                          ${
+                            errors.type
+                              ? "border-[#9E2A2B]"
+                              : "border-gray-300 dark:border-zinc-700"
+                          }
+                          ${
+                            errors.type
+                              ? "focus:border-[#9E2A2B]"
+                              : "focus:border-gray-300"
+                          }
+                          `}
+                        >
+                          <option value="FULL_TIME">Full Time</option>
+                          <option value="PART_TIME">Part Time</option>
+                          <option value="REMOTE">Remote</option>
+                          <option value="INTERNSHIP">Internship</option>
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-gray-400">
+                          <svg
+                            className="fill-current h-4 w-4"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                          >
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                          </svg>
+                        </div>
 
-                  <div>
-                    <label htmlFor="type">Type</label>
-                    <select
-                      id="type"
-                      {...register("type")}
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        {errors?.type && (
+                          <p className="text-[#9E2A2B] text-xs italic">
+                            {errors.type.message}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    {/* STATUS */}
+                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                      <label
+                        className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        htmlFor="status"
+                      >
+                        Status
+                      </label>
+                      <div className="relative">
+                        <select
+                          id="status"
+                          {...register("status")}
+                          className={`block appearance-none w-full bg-gray-200 dark:bg-zinc-800 border  text-gray-700 dark:text-gray-400 py-3 px-4 pr-8 mb-3 rounded leading-tight focus:outline-none
+                          ${
+                            errors.status
+                              ? "border-[#9E2A2B]"
+                              : "border-gray-300 dark:border-zinc-700"
+                          }
+                          ${
+                            errors.status
+                              ? "focus:border-[#9E2A2B]"
+                              : "focus:border-gray-300"
+                          }
+                          `}
+                        >
+                          <option value="PENDING">Pending</option>
+                          <option value="INTERVIEW">Interview</option>
+                          <option value="DECLINED">Declined</option>
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-gray-400">
+                          <svg
+                            className="fill-current h-4 w-4"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                          >
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                          </svg>
+                        </div>
+                        {errors?.status && (
+                          <p className="text-[#9E2A2B] text-xs italic">
+                            {errors.status.message}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    <button
+                      disabled={loading}
+                      className="
+                      text-white
+                      font-bold 
+                      mt-10
+                      mx-3
+                      py-2
+                      disabled:opacity-70
+                      disabled:cursor-not-allowed
+                      rounded-lg
+                      hover:opacity-80
+                      transition
+                      bg-[#9E2A2B]
+                      w-full
+                      "
+                      type="submit"
                     >
-                      <option value="FULL_TIME">Full Time</option>
-                      <option value="PART_TIME">Part Time</option>
-                      <option value="REMOTE">Remote</option>
-                      <option value="INTERNSHIP">Internship</option>
-
-                      {errors?.type && <span>{errors.type.message}</span>}
-                    </select>
+                      Submit
+                    </button>
                   </div>
-
-                  <div>
-                    <label htmlFor="location">Location</label>
-                    <input
-                      type="text"
-                      id="location"
-                      {...register("location")}
-                    />
-                    {errors?.location && <span>{errors.location.message}</span>}
-                  </div>
-
-                  <div>
-                    <label htmlFor="position">Position</label>
-                    <input
-                      type="text"
-                      id="position"
-                      {...register("position")}
-                    />
-                    {errors?.position && <span>{errors.position.message}</span>}
-                  </div>
-
-                  <button type="submit" disabled={loading}>
-                    submit
-                  </button>
                 </form>
               </div>
             </div>
