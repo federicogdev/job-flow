@@ -18,9 +18,11 @@ const Sidebar = ({ children }: SidebarProps) => {
     <div className="flex">
       <div className="fixed w-20 h-screen p-4 bg-white dark:bg-zinc-900 border-r-[1px] border-gray-300 dark:border-zinc-700 flex flex-col justify-between">
         <div className="flex flex-col items-center">
-          <div className="bg-slate-400 dark:bg-slate-800 hover:bg-gray-300 dark:hover:bg-zinc-800 rounded-lg inline-block p-3">
-            <MdAdd size={20} />
-          </div>
+          <Link href="/add">
+            <div className="bg-slate-400 dark:bg-slate-800 hover:bg-gray-300 dark:hover:bg-zinc-800 rounded-lg inline-block p-3">
+              <MdAdd size={20} />
+            </div>
+          </Link>
           <span className="border-b-[1px] border-gray-300 dark:border-zinc-700 w-full p-2" />
           <Link href="/">
             <div className="bg-gray-100 dark:bg-slate-700 hover:bg-slate-400 dark:hover:bg-slate-800 cursor-pointer my-3 p-3 rounded-lg inline-block">
