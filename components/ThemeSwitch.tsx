@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 
 const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false);
@@ -10,16 +11,17 @@ const ThemeSwitch = () => {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return null;
-  }
+  if (!mounted) return null;
+
+  const Icon = theme === "dark" ? BsFillSunFill : BsFillMoonFill;
 
   return (
-    <select value={theme} onChange={(e) => setTheme(e.target.value)}>
-      <option value="system">System</option>
-      <option value="dark">Dark</option>
-      <option value="light">Light</option>
-    </select>
+    <div
+      onClick={() => (theme === "dark" ? setTheme("light") : setTheme("dark"))}
+      className="text-blue-400  dark:text-yellow-200 bg-gray-200 dark:bg-zinc-700 hover:bg-gray-300 dark:hover:bg-zinc-800 cursor-pointer my-3 p-3 rounded-lg inline-block"
+    >
+      <Icon size={20} />
+    </div>
   );
 };
 

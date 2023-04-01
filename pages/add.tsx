@@ -1,3 +1,4 @@
+import useOverview from "@/hooks/useOverview";
 import { JobStatus, JobType } from "@prisma/client";
 import { NextPageContext } from "next";
 import { getSession, signOut } from "next-auth/react";
@@ -32,6 +33,8 @@ const Add = (props: Props) => {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const { mutate: mutateOverview } = useOverview();
+
   const onSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -50,7 +53,8 @@ const Add = (props: Props) => {
       });
 
       if (res.ok) {
-        console.log("success");
+        // console.log("success");
+        mutateOverview();
       } else {
         setError((await res.json()).error);
       }

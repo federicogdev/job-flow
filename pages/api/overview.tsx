@@ -16,7 +16,7 @@ export default async function handler(
 
     const recentJobs = await prisma.job.findMany({
       where: { userId: currentUser.id },
-      take: 6,
+      take: 7,
       orderBy: { createdAt: "desc" },
     });
 
