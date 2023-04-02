@@ -1,5 +1,6 @@
 import useJobApplicationModal from "@/hooks/useJobApplicationModal";
 import useOverview from "@/hooks/useOverview";
+import useRecentJobs from "@/hooks/useRecentJobs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { JobStatus, JobType } from "@prisma/client";
 import { useCallback, useEffect, useState } from "react";
@@ -40,6 +41,7 @@ const JobApplicationModal = (props: Props) => {
   }, [isOpen]);
 
   const { mutate: mutateOverview } = useOverview();
+  const { mutate: mutateRecentJobs } = useRecentJobs();
 
   const handleClose = useCallback(() => {
     if (loading) {
@@ -67,6 +69,7 @@ const JobApplicationModal = (props: Props) => {
         // console.log("SUCCESS");
         toast.success("Successfully create a new post!");
         mutateOverview();
+        mutateRecentJobs();
         reset();
         handleClose();
       } else {

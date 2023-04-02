@@ -14,7 +14,6 @@ type OverviewResponse = {
       declined: number;
     };
   };
-  recent: Job[];
 };
 
 const useOverview = () => {
