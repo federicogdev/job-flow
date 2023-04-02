@@ -4,6 +4,8 @@ import prisma from "@/libs/prisma";
 import { JobStatus, JobType } from "@prisma/client";
 import { number } from "zod";
 
+type Sort = "desc" | "asc";
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -31,7 +33,13 @@ export default async function handler(
     }
 
     if (req.method === "GET") {
-      const { status, type, page = "1", perPage = "10" } = req.query;
+      const {
+        status,
+        type,
+        page = "1",
+        perPage = "10",
+        sort = "desc",
+      } = req.query;
 
       const jobs = await prisma.job.findMany({
         where: {
@@ -41,7 +49,7 @@ export default async function handler(
         },
         skip: (Number(page) - 1) * Number(perPage),
         take: Number(perPage),
-        orderBy: { createdAt: "desc" },
+        orderBy: { createdAt: sort as Sort },
       });
 
       const count = await prisma.job.count({

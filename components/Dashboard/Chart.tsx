@@ -99,7 +99,7 @@ const Chart = (props: Props) => {
   };
 
   return (
-    <div className="w-full md:col-span-2 relative lg:h-[80vh] h-[50vh] m-auto p-4 border border-gray-300 dark:border-zinc-700 rounded-lg bg-gray-50 dark:bg-zinc-900">
+    <div className="w-full lg:col-span-2 relative lg:h-[80vh] h-[50vh] m-auto p-4 border border-gray-300 dark:border-zinc-700 rounded-lg bg-gray-50 dark:bg-zinc-900">
       {/* @ts-ignore */}
       {overview?.byDay && <Bar data={data} options={chartOptions} />}
     </div>

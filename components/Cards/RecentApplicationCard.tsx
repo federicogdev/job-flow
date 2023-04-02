@@ -1,5 +1,6 @@
 import { Job, JobStatus } from "@prisma/client";
 import { formatDistanceToNowStrict } from "date-fns";
+import Link from "next/link";
 import React from "react";
 
 import {
@@ -31,16 +32,19 @@ const RecentApplicationCard = ({ job }: RecentApplicationCardProps) => {
   };
 
   return (
-    <div className="border items-center justify-between rounded-lg my-3 p-2 flex bg-gray-50 dark:bg-zinc-900 border-gray-300 dark:border-zinc-700">
+    <Link
+      href={`/jobs/${job.id}`}
+      className="border items-center justify-between rounded-lg my-3 p-2 flex bg-gray-50 dark:bg-zinc-900 border-gray-300 dark:border-zinc-700"
+    >
       <div className="flex items-center">
         <div
           className={`
-        p-3 rounded
-        text-white
-        ${job.status === "PENDING" ? "bg-blue-400" : ""} 
-        ${job.status === "DECLINED" ? "bg-red-400" : ""}
-        ${job.status === "INTERVIEW" ? "bg-green-400" : ""}
-        `}
+          p-1 rounded
+          text-white
+          ${job.status === "PENDING" ? "bg-blue-600" : ""} 
+          ${job.status === "DECLINED" ? "bg-red-600" : ""}
+          ${job.status === "INTERVIEW" ? "bg-green-600" : ""}
+          `}
         >
           {renderIcon(job.status)}
         </div>
@@ -54,7 +58,7 @@ const RecentApplicationCard = ({ job }: RecentApplicationCardProps) => {
           addSuffix: true,
         })}
       </p>
-    </div>
+    </Link>
   );
 };
 

@@ -3,9 +3,9 @@ import useSWR from "swr";
 import { Job, JobStatus, JobType } from "@prisma/client";
 
 type JobsResponse = {
-  jobs?: Job[];
-  pages?: number;
-  count?: number;
+  jobs: Job[];
+  pages: number;
+  count: number;
 };
 
 const useJobs = (key: string) => {
