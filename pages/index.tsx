@@ -1,3 +1,6 @@
+import Chart from "@/components/Dashboard/Chart";
+import RecentApplications from "@/components/Dashboard/RecentApplications";
+import StatusOverviewPanel from "@/components/Dashboard/StatusOverviewPanel";
 import useOverview from "@/hooks/useOverview";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
@@ -23,7 +26,15 @@ export async function getServerSideProps(context: NextPageContext) {
 
 const HomePage = (props: Props) => {
   const { data: overview, error, isLoading, mutate } = useOverview();
-  return <div className="min-h-screen"></div>;
+  return (
+    <div className="min-h-screen">
+      <StatusOverviewPanel />
+      <div className="p-4 grid md:grid-cols-3 grid-cols-1 gap-4">
+        <Chart />
+        <RecentApplications />
+      </div>
+    </div>
+  );
 };
 
 export default HomePage;
