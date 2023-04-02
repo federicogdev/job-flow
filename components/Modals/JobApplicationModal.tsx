@@ -42,7 +42,6 @@ const JobApplicationModal = (props: Props) => {
 
   const { mutate: mutateOverview } = useOverview();
   const { mutate: mutateRecentJobs } = useRecentJobs();
-
   const handleClose = useCallback(() => {
     if (loading) {
       return;
@@ -66,10 +65,12 @@ const JobApplicationModal = (props: Props) => {
       });
 
       if (response.ok) {
-        // console.log("SUCCESS");
         toast.success("Successfully create a new post!");
         mutateOverview();
         mutateRecentJobs();
+        //         gotta make a context
+        // mutateRecentJobs()
+        // mutateAllJobs()
         reset();
         handleClose();
       } else {

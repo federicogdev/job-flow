@@ -1,3 +1,4 @@
+import useJobs from "@/hooks/useJobs";
 import useOverview from "@/hooks/useOverview";
 import useRecentJobs from "@/hooks/useRecentJobs";
 import Link from "next/link";
@@ -8,6 +9,7 @@ interface Props {}
 
 const RecentApplications = (props: Props) => {
   const { data: recentJobs = [] } = useRecentJobs();
+
   return (
     <div>
       <div className="flex justify-between">
@@ -18,9 +20,9 @@ const RecentApplications = (props: Props) => {
         </Link>
       </div>
       <div>
-        {recentJobs.map((job) => (
-          <RecentApplicationCard job={job} />
-        ))}
+        {!!recentJobs &&
+          recentJobs.length > 0 &&
+          recentJobs.map((job) => <RecentApplicationCard job={job} />)}
       </div>
     </div>
   );

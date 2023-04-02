@@ -41,7 +41,9 @@ const Chart = (props: Props) => {
     scales: {
       y: {
         grid: {
+          // display: false,
           color: theme === "dark" ? "#3f3f46" : "#d1d5db",
+          borderDash: [3],
         },
         suggestedMin: 0,
         ticks: {
@@ -50,6 +52,7 @@ const Chart = (props: Props) => {
       },
       x: {
         grid: {
+          display: false,
           color: theme === "dark" ? "#3f3f46" : "#d1d5db",
         },
       },

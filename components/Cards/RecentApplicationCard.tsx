@@ -31,7 +31,7 @@ const RecentApplicationCard = ({ job }: RecentApplicationCardProps) => {
   };
 
   return (
-    <div className="border cursor-pointer items-center justify-between rounded-lg my-3 p-2 flex bg-gray-50 dark:bg-zinc-900 border-gray-300 dark:border-zinc-700">
+    <div className="border items-center justify-between rounded-lg my-3 p-2 flex bg-gray-50 dark:bg-zinc-900 border-gray-300 dark:border-zinc-700">
       <div className="flex items-center">
         <div
           className={`
@@ -49,7 +49,7 @@ const RecentApplicationCard = ({ job }: RecentApplicationCardProps) => {
           <p className="text-sm text-gray-400">{job.position}</p>
         </div>
       </div>
-      <p className="lg:flex md:hidden text-sm text-gray-400">
+      <p className="lg:flex md:hidden text-sm">
         {formatDistanceToNowStrict(new Date(job.createdAt), {
           addSuffix: true,
         })}

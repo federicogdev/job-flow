@@ -30,10 +30,20 @@ export default async function handler(
     }
 
     if (req.method === "GET") {
+      const { status, type, page = "1", perPage = "10" } = req.query;
+
       const jobs = await prisma.job.findMany({
-        where: { userId: currentUser.id },
+        where: {
+          userId: currentUser.id,
+          status: status ? (status as JobStatus) : undefined,
+          type: type ? (type as JobType) : undefined,
+        },
+        skip: (Number(page) - 1) * Number(perPage),
+        take: Number(perPage),
         orderBy: { createdAt: "desc" },
       });
+
+      console.log(jobs);
 
       return res.status(200).json(jobs);
     }

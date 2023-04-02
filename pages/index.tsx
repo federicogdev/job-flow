@@ -25,7 +25,6 @@ export async function getServerSideProps(context: NextPageContext) {
 }
 
 const HomePage = (props: Props) => {
-  const { data: overview, error, isLoading, mutate } = useOverview();
   return (
     <div className="min-h-screen">
       <StatusOverviewPanel />
