@@ -3,6 +3,7 @@ import useOverview from "@/hooks/useOverview";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { IoMdClose } from "react-icons/io";
 import * as z from "zod";
 
@@ -63,9 +64,10 @@ const JobApplicationModal = (props: Props) => {
 
       if (response.ok) {
         // console.log("SUCCESS");
-        handleClose();
-        reset();
+        toast.success("Successfully create a new post!");
         mutateOverview();
+        reset();
+        handleClose();
       } else {
         setError(`An error occured while submit your form`);
       }
