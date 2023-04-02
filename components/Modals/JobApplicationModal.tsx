@@ -1,6 +1,7 @@
 import useJobApplicationModal from "@/hooks/useJobApplicationModal";
 import useOverview from "@/hooks/useOverview";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { JobStatus, JobType } from "@prisma/client";
 import { useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
@@ -300,10 +301,10 @@ const JobApplicationModal = (props: Props) => {
                           }
                           `}
                         >
-                          <option value="FULL_TIME">Full Time</option>
-                          <option value="PART_TIME">Part Time</option>
-                          <option value="REMOTE">Remote</option>
-                          <option value="INTERNSHIP">Internship</option>
+                          <option value={JobType.FULL_TIME}>Full Time</option>
+                          <option value={JobType.PART_TIME}>Part Time</option>
+                          <option value={JobType.REMOTE}>Remote</option>
+                          <option value={JobType.INTERNSHIP}>Internship</option>
                         </select>
                         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-gray-400">
                           <svg
@@ -347,9 +348,9 @@ const JobApplicationModal = (props: Props) => {
                           }
                           `}
                         >
-                          <option value="PENDING">Pending</option>
-                          <option value="INTERVIEW">Interview</option>
-                          <option value="DECLINED">Declined</option>
+                          <option value={JobStatus.PENDING}>Pending</option>
+                          <option value={JobStatus.INTERVIEW}>Interview</option>
+                          <option value={JobStatus.DECLINED}>Declined</option>
                         </select>
                         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-gray-400">
                           <svg

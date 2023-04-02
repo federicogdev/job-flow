@@ -7,7 +7,13 @@ type OverviewResponse = {
   declined: number;
   pending: number;
   interview: number;
-  byMonth: { [key: string]: number };
+  byDay: {
+    [key: string]: {
+      pending: number;
+      interview: number;
+      declined: number;
+    };
+  };
   recent: Job[];
 };
 
