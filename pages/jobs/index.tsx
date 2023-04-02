@@ -30,7 +30,7 @@ const JobsPage = (props: Props) => {
   const [status, setStatus] = useState<JobStatus | "">("");
   const [type, setType] = useState<JobType | string>("");
   const url = `/api/jobs?status=${status}&type=${type}&page=${page}&perPage=${perPage}`;
-  const { data: jobs = [], isLoading, error, mutate } = useJobs(url);
+  const { data, isLoading, error, mutate } = useJobs(url);
 
   return (
     <div>
@@ -59,10 +59,13 @@ const JobsPage = (props: Props) => {
             <option value={JobType.REMOTE}>Remote</option>
           </select>
         </div>
+
+        <div>page: {data?.pages}</div>
+        <div>page: {data?.count}</div>
       </div>
-      {jobs.map((job) => (
-        <RecentApplicationCard job={job} />
-      ))}
+      {!!data?.jobs &&
+        data?.jobs.length > 0 &&
+        data.jobs.map((job) => <RecentApplicationCard job={job} />)}
     </div>
   );
 };

@@ -8,7 +8,7 @@ import RecentApplicationCard from "../Cards/RecentApplicationCard";
 interface Props {}
 
 const RecentApplications = (props: Props) => {
-  const { data: recentJobs = [] } = useRecentJobs();
+  const { data } = useRecentJobs();
 
   return (
     <div>
@@ -20,9 +20,9 @@ const RecentApplications = (props: Props) => {
         </Link>
       </div>
       <div>
-        {!!recentJobs &&
-          recentJobs.length > 0 &&
-          recentJobs.map((job) => <RecentApplicationCard job={job} />)}
+        {!!data?.jobs &&
+          data?.jobs.length > 0 &&
+          data?.jobs.map((job) => <RecentApplicationCard job={job} />)}
       </div>
     </div>
   );

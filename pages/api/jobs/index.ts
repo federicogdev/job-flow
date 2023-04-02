@@ -2,6 +2,7 @@ import serverAuth from "@/libs/serverAuth";
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/libs/prisma";
 import { JobStatus, JobType } from "@prisma/client";
+import { number } from "zod";
 
 export default async function handler(
   req: NextApiRequest,
@@ -43,9 +44,17 @@ export default async function handler(
         orderBy: { createdAt: "desc" },
       });
 
-      console.log(jobs);
+      const count = await prisma.job.count({
+        where: {
+          userId: currentUser.id,
+          status: status ? (status as JobStatus) : undefined,
+          type: type ? (type as JobType) : undefined,
+        },
+      });
 
-      return res.status(200).json(jobs);
+      const pages = Math.ceil(count / Number(perPage));
+
+      return res.status(200).json({ jobs, pages, count });
     }
   } catch (error) {
     return res.status(400).json({ error: `Something went wrong: ${error}` });
