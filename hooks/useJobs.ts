@@ -12,7 +12,7 @@ type JobsResponse = {
 
 const useJobs = () => {
   const { page, perPage, status, type, sort } = useContext(JobsContext);
-  const url = `/api/jobs?status=${status}&type=${type}&page=${page}&perPage=10&sort=${sort}`;
+  const url = `/api/jobs?status=${status}&type=${type}&page=${page}&perPage=${perPage}&sort=${sort}`;
 
   const { data, error, isLoading, mutate } = useSWR<JobsResponse>(url, fetcher);
 

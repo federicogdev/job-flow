@@ -35,7 +35,7 @@ const JobsPage = (props: Props) => {
   const showPagination = data?.jobs && data?.pages && data?.pages > 1;
   const showJobs = !!data?.jobs && data?.jobs.length > 0;
   return (
-    <div className="p-4 min-h-screen">
+    <div className="p-4 min-h-screen flex flex-col">
       <SortPanel />
       {isLoading ? (
         <div className="h-full">

@@ -1,4 +1,5 @@
 import useJobApplicationModal from "@/hooks/useJobApplicationModal";
+import useJobs from "@/hooks/useJobs";
 import useOverview from "@/hooks/useOverview";
 import useRecentJobs from "@/hooks/useRecentJobs";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,11 +13,20 @@ import * as z from "zod";
 interface Props {}
 
 const schema = z.object({
-  company: z.string().nonempty(),
+  company: z
+    .string()
+    .min(3, "Minimum allowed characters is 3")
+    .max(30, "Maximum allowed characters is 30"),
   status: z.enum(["INTERVIEW", "DECLINED", "PENDING"]),
   type: z.enum(["FULL_TIME", "PART_TIME", "REMOTE", "INTERNSHIP"]),
-  location: z.string().nonempty(),
-  position: z.string().nonempty(),
+  location: z
+    .string()
+    .min(3, "Minimum allowed characters is 3")
+    .max(30, "Maximum allowed characters is 30"),
+  position: z
+    .string()
+    .min(3, "Minimum allowed characters is 3")
+    .max(30, "Maximum allowed characters is 30"),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -42,6 +52,8 @@ const JobApplicationModal = (props: Props) => {
 
   const { mutate: mutateOverview } = useOverview();
   const { mutate: mutateRecentJobs } = useRecentJobs();
+  const { mutate: mutateJobs } = useJobs();
+
   const handleClose = useCallback(() => {
     if (loading) {
       return;
@@ -68,9 +80,8 @@ const JobApplicationModal = (props: Props) => {
         toast.success("Successfully create a new post!");
         mutateOverview();
         mutateRecentJobs();
-        //         gotta make a context
-        // mutateRecentJobs()
-        // mutateAllJobs()
+        mutateJobs();
+
         reset();
         handleClose();
       } else {

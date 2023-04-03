@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import JobApplicationModal from "@/components/Modals/JobApplicationModal";
 import { Toaster } from "react-hot-toast";
 import { JobsContextProvider } from "@/context/JobsContext";
+import JobApplicationEditModal from "@/components/Modals/JobApplicationEditModal";
 
 export default function App({
   Component,
@@ -16,6 +17,7 @@ export default function App({
       <JobsContextProvider>
         <ThemeProvider attribute="class">
           <Layout>
+            <JobApplicationEditModal />
             <JobApplicationModal />
             <Toaster
               toastOptions={{
