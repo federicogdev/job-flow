@@ -34,6 +34,7 @@ const Chart = (props: Props) => {
       title: {
         display: true,
         text: "Last Week Job Applications",
+        color: theme === "dark" ? "white" : "black",
       },
       //
     },
@@ -41,8 +42,7 @@ const Chart = (props: Props) => {
     scales: {
       y: {
         grid: {
-          // display: false,
-          color: theme === "dark" ? "#3f3f46" : "#d1d5db",
+          color: theme === "dark" ? "#27272a" : "#d1d5db",
           borderDash: [3],
         },
         suggestedMin: 0,
@@ -53,7 +53,7 @@ const Chart = (props: Props) => {
       x: {
         grid: {
           display: false,
-          color: theme === "dark" ? "#3f3f46" : "#d1d5db",
+          color: theme === "dark" ? "#27272a" : "#d1d5db",
         },
       },
     },
@@ -69,37 +69,37 @@ const Chart = (props: Props) => {
     datasets: [
       {
         label: "Pending",
-        backgroundColor: "rgba(96, 165, 250, 0.8)",
-        borderColor: "rgba(96, 165, 250, 1)",
+        backgroundColor: "rgba(2, 132, 199, 0.8)",
+        borderColor: "rgba(2, 132, 199, 1)",
         borderWidth: 1,
-        hoverBackgroundColor: "rgba(96, 165, 250, 0.6)",
-        hoverBorderColor: "rgba(96, 165, 250, 1)",
+        hoverBackgroundColor: "rgba(2, 132, 199, 0.6)",
+        hoverBorderColor: "rgba(2, 132, 199, 1)",
         data: Object.values(overview.byDay).map((day) => day.pending),
       },
 
       {
         label: "Interview",
-        backgroundColor: "rgba(74, 222, 128, 0.8)",
-        borderColor: "rgba(74, 222, 128, 1)",
+        backgroundColor: "rgba(13, 148, 136, 0.8)",
+        borderColor: "rgba(13, 148, 136, 1)",
         borderWidth: 1,
-        hoverBackgroundColor: "rgba(74, 222, 128, 0.6)",
-        hoverBorderColor: "rgba(74, 222, 128, 1)",
+        hoverBackgroundColor: "rgba(13, 148, 136, 0.6)",
+        hoverBorderColor: "rgba(13, 148, 136, 1)",
         data: Object.values(overview.byDay).map((day) => day.interview),
       },
       {
         label: "Declined",
-        backgroundColor: "rgba(248, 113, 113, 0.8)",
-        borderColor: "rgba(248, 113, 113, 1)",
+        backgroundColor: "rgba(225, 29, 72, 0.8)",
+        borderColor: "rgba(225, 29, 72, 1)",
         borderWidth: 1,
-        hoverBackgroundColor: "rgba(248, 113, 113, 0.6)",
-        hoverBorderColor: "rgba(248, 113, 113, 1)",
+        hoverBackgroundColor: "rgba(225, 29, 72, 0.6)",
+        hoverBorderColor: "rgba(225, 29, 72, 1)",
         data: Object.values(overview.byDay).map((day) => day.declined),
       },
     ],
   };
 
   return (
-    <div className="w-full lg:col-span-2 relative lg:h-[80vh] h-[50vh] m-auto p-4 border border-gray-300 dark:border-zinc-700 rounded-lg bg-gray-50 dark:bg-zinc-900">
+    <div className="w-full lg:col-span-2 relative lg:h-[80vh] h-[50vh] m-auto p-4 border border-gray-300 dark:border-zinc-800 rounded-md bg-gray-100 dark:bg-zinc-900">
       {/* @ts-ignore */}
       {overview?.byDay && <Bar data={data} options={chartOptions} />}
     </div>

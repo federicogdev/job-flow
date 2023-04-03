@@ -8,7 +8,7 @@ const LogoutButton = (props: Props) => {
   return (
     <div
       onClick={() => signOut()}
-      className="text-red-600 bg-gray-200 dark:bg-zinc-700 hover:bg-gray-300 dark:hover:bg-zinc-800 cursor-pointer my-3 p-3 rounded-lg inline-block"
+      className="bg-rose-600 text-gray-200 hover:opacity-80 cursor-pointer my-3 p-3 rounded-lg inline-block"
     >
       <BiLogOut size={20} />
     </div>

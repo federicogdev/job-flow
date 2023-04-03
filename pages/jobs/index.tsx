@@ -1,16 +1,13 @@
+import JobApplicationCard from "@/components/Cards/JobApplicationCard";
 import RecentApplicationCard from "@/components/Cards/RecentApplicationCard";
 import Pagination from "@/components/Pagination";
 import SortPanel from "@/components/SortPanel";
 import { JobsContext } from "@/context/JobsContext";
 import useJobs from "@/hooks/useJobs";
-import { JobStatus, JobType } from "@prisma/client";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
-import React, { useContext, useState } from "react";
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
-import ReactPaginate from "react-paginate";
+import { useContext } from "react";
 import { BarLoader } from "react-spinners";
-import ClipLoader from "react-spinners/ClipLoader";
 
 interface Props {}
 
@@ -32,10 +29,9 @@ export async function getServerSideProps(context: NextPageContext) {
 }
 
 const JobsPage = (props: Props) => {
-  const { page, status, type, sort } = useContext(JobsContext);
+  const { perPage } = useContext(JobsContext);
 
-  const url = `/api/jobs?status=${status}&type=${type}&page=${page}&perPage=12&sort=${sort}`;
-  const { data, isLoading, error, mutate } = useJobs(url);
+  const { data, isLoading, error, mutate } = useJobs();
   const showPagination = data?.jobs && data?.pages && data?.pages > 1;
   const showJobs = !!data?.jobs && data?.jobs.length > 0;
   return (
@@ -45,21 +41,22 @@ const JobsPage = (props: Props) => {
         <div className="h-full">
           <BarLoader
             color="red"
-            // loading={loading}
-            // size={150}
             aria-label="Loading Spinner"
             data-testid="loader"
           />
         </div>
       ) : (
-        <div className="grid lg:grid-cols-3 gap-x-3 gap-y-1">
-          {showJobs &&
-            data.jobs.map((job) => <RecentApplicationCard job={job} />)}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-1">
+          {showJobs && data.jobs.map((job) => <JobApplicationCard job={job} />)}
         </div>
       )}
 
       {showPagination && (
-        <Pagination pagesCount={data?.pages} count={data.count} />
+        <Pagination
+          pagesCount={data?.pages}
+          count={data.count}
+          perPage={perPage}
+        />
       )}
     </div>
   );

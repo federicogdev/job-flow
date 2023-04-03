@@ -75,9 +75,11 @@ const JobApplicationModal = (props: Props) => {
         handleClose();
       } else {
         setError(`An error occured while submit your form`);
+        toast.error("Something went wrong");
       }
     } catch (error) {
       setError(`An error occured while submit your form`);
+      toast.error("Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -189,13 +191,13 @@ const JobApplicationModal = (props: Props) => {
                       <input
                         className={`appearance-none block w-full bg-gray-200  dark:bg-zinc-800 text-gray-700 dark:text-gray-400 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none
                         ${
-                          errors.location
-                            ? "border-[#9E2A2B]"
+                          errors.position
+                            ? "border-rose-500"
                             : "border-gray-300 dark:border-zinc-700"
                         }
                           ${
-                            errors.location
-                              ? "focus:border-[#9E2A2B]"
+                            errors.position
+                              ? "focus:border-rose-500"
                               : "focus:border-gray-300"
                           }
                         `}
@@ -205,7 +207,7 @@ const JobApplicationModal = (props: Props) => {
                         placeholder="CEO, Intern, Senior Engineer...."
                       />
                       {errors?.position && (
-                        <p className="text-[#9E2A2B] text-xs italic">
+                        <p className="text-rose-500 text-xs italic">
                           {errors.position.message}
                         </p>
                       )}
@@ -225,12 +227,12 @@ const JobApplicationModal = (props: Props) => {
                         className={`appearance-none block w-full bg-gray-200 dark:bg-zinc-800 text-gray-700 dark:text-gray-400 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none 
                         ${
                           errors.company
-                            ? "border-[#9E2A2B]"
+                            ? "border-rose-500"
                             : "border-gray-300 dark:border-zinc-700"
                         }
                         ${
                           errors.company
-                            ? "focus:border-[#9E2A2B]"
+                            ? "focus:border-rose-500"
                             : "focus:border-gray-300"
                         }
                         `}
@@ -240,7 +242,7 @@ const JobApplicationModal = (props: Props) => {
                         {...register("company")}
                       />
                       {errors?.company && (
-                        <p className="text-[#9E2A2B] text-xs italic">
+                        <p className="text-rose-500 text-xs italic">
                           {errors.company.message}
                         </p>
                       )}
@@ -257,12 +259,12 @@ const JobApplicationModal = (props: Props) => {
                         className={`appearance-none block w-full bg-gray-200 dark:bg-zinc-800 text-gray-700 dark:text-gray-400 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none 
                         ${
                           errors.location
-                            ? "border-[#9E2A2B]"
+                            ? "border-rose-500"
                             : "border-gray-300 dark:border-zinc-700"
                         }
                         ${
                           errors.location
-                            ? "focus:border-[#9E2A2B]"
+                            ? "focus:border-rose-500"
                             : "focus:border-gray-300"
                         }
                         `}
@@ -272,7 +274,7 @@ const JobApplicationModal = (props: Props) => {
                         {...register("location")}
                       />
                       {errors?.location && (
-                        <p className="text-[#9E2A2B] text-xs italic">
+                        <p className="text-rose-500 text-xs italic">
                           {errors.location.message}
                         </p>
                       )}
@@ -295,12 +297,12 @@ const JobApplicationModal = (props: Props) => {
                           className={`block appearance-none w-full bg-gray-200 dark:bg-zinc-800 border  text-gray-700 dark:text-gray-400 py-3 px-4 pr-8 mb-3 rounded leading-tight focus:outline-none
                           ${
                             errors.type
-                              ? "border-[#9E2A2B]"
+                              ? "border-rose-500"
                               : "border-gray-300 dark:border-zinc-700"
                           }
                           ${
                             errors.type
-                              ? "focus:border-[#9E2A2B]"
+                              ? "focus:border-rose-500"
                               : "focus:border-gray-300"
                           }
                           `}
@@ -321,7 +323,7 @@ const JobApplicationModal = (props: Props) => {
                         </div>
 
                         {errors?.type && (
-                          <p className="text-[#9E2A2B] text-xs italic">
+                          <p className="text-rose-500 text-xs italic">
                             {errors.type.message}
                           </p>
                         )}
@@ -342,12 +344,12 @@ const JobApplicationModal = (props: Props) => {
                           className={`block appearance-none w-full bg-gray-200 dark:bg-zinc-800 border  text-gray-700 dark:text-gray-400 py-3 px-4 pr-8 mb-3 rounded leading-tight focus:outline-none
                           ${
                             errors.status
-                              ? "border-[#9E2A2B]"
+                              ? "border-rose-500"
                               : "border-gray-300 dark:border-zinc-700"
                           }
                           ${
                             errors.status
-                              ? "focus:border-[#9E2A2B]"
+                              ? "focus:border-rose-500"
                               : "focus:border-gray-300"
                           }
                           `}
@@ -366,7 +368,7 @@ const JobApplicationModal = (props: Props) => {
                           </svg>
                         </div>
                         {errors?.status && (
-                          <p className="text-[#9E2A2B] text-xs italic">
+                          <p className="text-rose-500 text-xs italic">
                             {errors.status.message}
                           </p>
                         )}
@@ -376,7 +378,8 @@ const JobApplicationModal = (props: Props) => {
                     <button
                       disabled={loading}
                       className="
-                      text-white
+
+                      text-white  dark:text-black bg-[#392061] dark:bg-[#DDC9B4]
                       font-bold 
                       mt-10
                       mx-3
@@ -386,7 +389,7 @@ const JobApplicationModal = (props: Props) => {
                       rounded-lg
                       hover:opacity-80
                       transition
-                      bg-[#9E2A2B]
+
                       w-full
                       "
                       type="submit"

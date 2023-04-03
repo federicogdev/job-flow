@@ -10,7 +10,7 @@ const SortPanel = (props: Props) => {
     useContext(JobsContext);
   return (
     // STATUS
-    <div className="flex flex-col md:flex-row gap-x-6   border p-4 rounded-lg bg-gray-50 dark:bg-zinc-900 border-gray-300 dark:border-zinc-700 mb-5 ">
+    <div className="flex flex-col md:flex-row gap-x-6 border p-4 rounded-lg bg-gray-100 dark:bg-zinc-900 border-gray-300 dark:border-zinc-800 mb-5 ">
       <div className="flex-col flex-1 mb-6 md:mb-0">
         <label
           className="block uppercase tracking-wide text-gray-700 dark:text-gray-400 text-xs font-bold mb-2"
@@ -26,7 +26,7 @@ const SortPanel = (props: Props) => {
             }}
             id="status"
             value={status}
-            className="block appearance-none w-full bg-gray-200 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 text-gray-700 dark:text-gray-400 py-3 px-4 pr-8  rounded leading-tight focus:outline-none"
+            className="block appearance-none w-full bg-gray-100 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-800 text-gray-700 dark:text-gray-400 py-3 px-4 pr-8  rounded leading-tight focus:outline-none"
           >
             <option value="">All</option>
             <option value={JobStatus.PENDING}>Pending</option>
@@ -61,7 +61,7 @@ const SortPanel = (props: Props) => {
               setType(e.target.value as JobType);
             }}
             id="type"
-            className="block appearance-none w-full bg-gray-200 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 text-gray-700 dark:text-gray-400 py-3 px-4 pr-8  rounded leading-tight focus:outline-none"
+            className="block appearance-none w-full bg-gray-100 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-800 text-gray-700 dark:text-gray-400 py-3 px-4 pr-8  rounded leading-tight focus:outline-none"
           >
             <option value="">All</option>
             <option value={JobType.FULL_TIME}>Full Time</option>
@@ -97,7 +97,7 @@ const SortPanel = (props: Props) => {
               setSort(e.target.value as Sort);
             }}
             id="sort"
-            className="block appearance-none w-full bg-gray-200 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 text-gray-700 dark:text-gray-400 py-3 px-4 pr-8  rounded leading-tight focus:outline-none"
+            className="block appearance-none w-full bg-gray-100 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-800 text-gray-700 dark:text-gray-400 py-3 px-4 pr-8  rounded leading-tight focus:outline-none"
           >
             <option value="desc">Recent</option>
             <option value="asc">Oldest</option>
@@ -116,7 +116,7 @@ const SortPanel = (props: Props) => {
 
       <div className="flex items-end">
         <button
-          className="p-3 text-white bg-[#9E2A2B] w-full rounded-lg font-bold hover:opacity-80
+          className="p-3 text-white  dark:text-black bg-[#392061] dark:bg-[#DDC9B4] w-full rounded-lg font-bold hover:opacity-80
           "
           onClick={() => {
             setPage(1);

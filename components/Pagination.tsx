@@ -1,25 +1,26 @@
 import { JobsContext } from "@/context/JobsContext";
 import React, { useContext } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
-import ReactPaginate from "react-paginate";
 
 interface PaginationProps {
   pagesCount?: number;
   count?: number;
+  perPage: number;
 }
 
-const Pagination = ({ pagesCount = 1, count = 1 }: PaginationProps) => {
+const Pagination = ({
+  pagesCount = 1,
+  count = 1,
+  perPage,
+}: PaginationProps) => {
   const { page, setPage } = useContext(JobsContext);
-
-  const showNextButton = page !== pagesCount;
-  const showPrevButton = page !== 1;
 
   const handlePageClick = (e: { selected: number }) => {
     setPage(e.selected + 1);
   };
 
-  const startIndex = (page - 1) * 12 + 1;
-  const endIndex = Math.min(startIndex + 12 - 1, count);
+  const startIndex = (page - 1) * perPage + 1;
+  const endIndex = Math.min(startIndex + perPage - 1, count);
 
   return (
     <div className="flex flex-col items-center">
@@ -44,10 +45,10 @@ const Pagination = ({ pagesCount = 1, count = 1 }: PaginationProps) => {
           disabled={page === 1}
           className="px-4 py-2 text-sm font-medium inline-flex items-center 
           border-r
-          border-gray-300 dark:border-zinc-700
+          border-gray-300 dark:border-zinc-800
           disabled:pointer-events-none
-          text-gray-600 dark:text-gray-400
-          bg-gray-50 dark:bg-zinc-800
+          text-gray-700 dark:text-gray-300
+          bg-gray-10 dark:bg-zinc-900
           hover:bg-gray-300 dark:hover:bg-zinc-700
           hover:text-black dark:hover:text-white"
         >
@@ -71,10 +72,10 @@ const Pagination = ({ pagesCount = 1, count = 1 }: PaginationProps) => {
           disabled={endIndex === count}
           className="px-4 py-2 text-sm font-medium inline-flex items-center 
           border-l
-          border-gray-300 dark:border-zinc-700
+          border-gray-300 dark:border-zinc-800
           disabled:pointer-events-none
-          text-gray-600 dark:text-gray-400
-          bg-gray-50 dark:bg-zinc-800
+          text-gray-700 dark:text-gray-300
+          bg-gray-10 dark:bg-zinc-900
           hover:bg-gray-300 dark:hover:bg-zinc-700
           hover:text-black dark:hover:text-white"
         >

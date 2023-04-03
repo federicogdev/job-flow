@@ -24,7 +24,7 @@ const Sidebar = ({ children }: SidebarProps) => {
         <div className="flex flex-col items-center">
           <div
             onClick={() => jobApplicationModal.onOpen()}
-            className="text-black  dark:text-white bg-gray-200 dark:bg-zinc-700 hover:bg-gray-300 dark:hover:bg-zinc-800 cursor-pointer my-3 p-3 rounded-lg inline-block"
+            className="text-white  dark:text-black bg-[#392061] dark:bg-[#DDC9B4] hover:bg-gray-300 dark:hover:bg-[#D3B99C] cursor-pointer my-3 p-3 rounded-lg inline-block"
           >
             <AiOutlinePlus size={20} />
           </div>
@@ -38,9 +38,8 @@ const Sidebar = ({ children }: SidebarProps) => {
         </div>
 
         <div>
-          <LogoutButton />
-
           <ThemeSwitch />
+          <LogoutButton />
         </div>
       </div>
       <main className="ml-20 w-full">{children}</main>

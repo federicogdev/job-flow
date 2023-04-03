@@ -3,8 +3,6 @@ import useOverview from "@/hooks/useOverview";
 import useRecentJobs from "@/hooks/useRecentJobs";
 import { Job, JobStatus } from "@prisma/client";
 import { formatDistanceToNowStrict } from "date-fns";
-import Link from "next/link";
-import React from "react";
 import toast from "react-hot-toast";
 
 import {
@@ -14,11 +12,15 @@ import {
   MdQuestionMark,
 } from "react-icons/md";
 
-interface RecentApplicationCardProps {
+interface JobApplicationCardProps {
   job: Job;
 }
 
-const RecentApplicationCard = ({ job }: RecentApplicationCardProps) => {
+const JobApplicationCard = ({ job }: JobApplicationCardProps) => {
+  const { mutate: mutateOverview } = useOverview();
+  const { mutate: mutateRecentJobs } = useRecentJobs();
+  const { mutate: mutateAllJobs } = useJobs();
+
   const renderIcon = (status: JobStatus) => {
     switch (status) {
       case "PENDING":
@@ -32,6 +34,26 @@ const RecentApplicationCard = ({ job }: RecentApplicationCardProps) => {
 
       default:
         return <MdQuestionMark size={30} />;
+    }
+  };
+
+  const onClick = async () => {
+    try {
+      const response = await fetch(`/api/jobs/${job.id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (response.ok) {
+        toast.success("Successfully deleted a job!");
+        mutateOverview();
+        mutateRecentJobs();
+        mutateAllJobs();
+      } else {
+        toast.error("Something went wrong");
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
     }
   };
 
@@ -54,12 +76,12 @@ const RecentApplicationCard = ({ job }: RecentApplicationCardProps) => {
         </div>
         <div className="pl-2">
           <p className="font-bold">{job.position}</p>
-          <p className="text-sm text-gray-700 dark:text-gray-300">
+          <p className="text-sm text-gray-600 dark:text-gray-400">
             {job.company}
           </p>
         </div>
       </div>
-      <p className="lg:flex md:hidden text-sm text-gray-700 dark:text-gray-300">
+      <p className="lg:flex md:hidden text-sm text-gray-600 dark:text-gray-400">
         {formatDistanceToNowStrict(new Date(job.createdAt), {
           addSuffix: true,
         })}
@@ -68,4 +90,4 @@ const RecentApplicationCard = ({ job }: RecentApplicationCardProps) => {
   );
 };
 
-export default RecentApplicationCard;
+export default JobApplicationCard;
