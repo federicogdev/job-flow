@@ -50,10 +50,12 @@ const RecentApplicationCard = ({ job }: RecentApplicationCardProps) => {
         </div>
         <div className="pl-2">
           <p className="font-bold">{job.company}</p>
-          <p className="text-sm text-gray-400">{job.position}</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            {job.position}
+          </p>
         </div>
       </div>
-      <p className="lg:flex md:hidden text-sm">
+      <p className="lg:flex md:hidden text-sm text-gray-600 dark:text-gray-400">
         {formatDistanceToNowStrict(new Date(job.createdAt), {
           addSuffix: true,
         })}

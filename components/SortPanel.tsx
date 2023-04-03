@@ -6,7 +6,7 @@ interface Props {}
 type Sort = "desc" | "asc";
 
 const SortPanel = (props: Props) => {
-  const { status, setStatus, sort, setSort, type, setType } =
+  const { status, setStatus, sort, setSort, type, setPage, setType } =
     useContext(JobsContext);
   return (
     // STATUS
@@ -20,7 +20,10 @@ const SortPanel = (props: Props) => {
         </label>
         <div className="relative">
           <select
-            onChange={(e) => setStatus(e.target.value as JobStatus)}
+            onChange={(e) => {
+              setPage(1);
+              setStatus(e.target.value as JobStatus);
+            }}
             id="status"
             value={status}
             className="block appearance-none w-full bg-gray-200 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 text-gray-700 dark:text-gray-400 py-3 px-4 pr-8  rounded leading-tight focus:outline-none"
@@ -53,7 +56,10 @@ const SortPanel = (props: Props) => {
         <div className="relative">
           <select
             value={type}
-            onChange={(e) => setType(e.target.value as JobType)}
+            onChange={(e) => {
+              setPage(1);
+              setType(e.target.value as JobType);
+            }}
             id="type"
             className="block appearance-none w-full bg-gray-200 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 text-gray-700 dark:text-gray-400 py-3 px-4 pr-8  rounded leading-tight focus:outline-none"
           >
@@ -86,7 +92,10 @@ const SortPanel = (props: Props) => {
         <div className="relative">
           <select
             value={sort}
-            onChange={(e) => setSort(e.target.value as Sort)}
+            onChange={(e) => {
+              setPage(1);
+              setSort(e.target.value as Sort);
+            }}
             id="sort"
             className="block appearance-none w-full bg-gray-200 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 text-gray-700 dark:text-gray-400 py-3 px-4 pr-8  rounded leading-tight focus:outline-none"
           >
@@ -107,9 +116,10 @@ const SortPanel = (props: Props) => {
 
       <div className="flex items-end">
         <button
-          className="p-3 bg-[#9E2A2B] w-full rounded-lg font-bold hover:opacity-80
+          className="p-3 text-white bg-[#9E2A2B] w-full rounded-lg font-bold hover:opacity-80
           "
           onClick={() => {
+            setPage(1);
             setType("");
             setStatus("");
             setSort("desc");
