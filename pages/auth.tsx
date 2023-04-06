@@ -80,64 +80,82 @@ const Auth = (props: Props) => {
   }, [email, name, password, login]);
 
   return (
-    <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
-      <div className="bg-black w-full h-full lg:bg-opacity-50">
-        <nav className="px-12 py-5">
-          {/* <img src="/images/logo.png" className="h-12" alt="Logo" /> */}
-        </nav>
-        <div className="flex justify-center">
-          <div className="bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
-            <h2 className="text-white text-4xl mb-8 font-semibold">
-              {variant === "login" ? "Sign in" : "Register"}
-            </h2>
-            <div className="flex flex-col gap-4">
-              {variant === "register" && (
-                <input
-                  id="name"
-                  type="text"
-                  //   label="Username"
-                  value={name}
-                  onChange={(e: any) => setName(e.target.value)}
-                />
-              )}
+    <div className="flex w-full h-screen">
+      <div className="w-full flex items-center justify-center lg:w-1/2 bg-white dark:bg-zinc-800">
+        <div className=" w-11/12 max-w-[700px] px-10 py-16 rounded-lg bg-gray-100 dark:bg-zinc-900 border border-gray-300 dark:border-zinc-700">
+          <h1 className="text-4xl font-semibold text-black dark:text-white">
+            {variant === "login" ? " Login" : "Register"}
+          </h1>
+
+          <div className="mt-8">
+            <div className="flex flex-col">
+              <label className="text-lg font-bold text-gray-700 dark:text-gray-300">
+                Email
+              </label>
               <input
-                id="email"
-                type="email"
-                // label="Email address or phone number"
                 value={email}
-                onChange={(e: any) => setEmail(e.target.value)}
-              />
-              <input
-                type="password"
-                id="password"
-                // label="Password"
-                value={password}
-                onChange={(e: any) => setPassword(e.target.value)}
+                type="text"
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full mb-3 border rounded-md p-3 mt-1 bg-transparent dark:bg-transparent focus:outline-none focus:ring-0border-gray-300 dark:border-zinc-700 focus:border-[#392061] dark:focus:border-[#DDC9B4]"
+                placeholder="Enter your email"
               />
             </div>
-            <div>{error && <h1>{error}</h1>}</div>
+            {variant === "register" && (
+              <div className="flex flex-col">
+                <label className="text-lg font-bold text-gray-700 dark:text-gray-300">
+                  Name
+                </label>
+                <input
+                  value={name}
+                  type="text"
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full mb-3 border rounded-md p-3 mt-1 bg-transparent dark:bg-transparent focus:outline-none focus:ring-0border-gray-300 dark:border-zinc-700 focus:border-[#392061] dark:focus:border-[#DDC9B4]"
+                  placeholder="Enter your name"
+                />
+              </div>
+            )}
+            <div className="flex flex-col">
+              <label className="text-lg font-bold text-gray-700 dark:text-gray-300">
+                Password
+              </label>
+              <input
+                value={password}
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full mb-3 border rounded-md p-3 mt-1 bg-transparent dark:bg-transparent focus:outline-none focus:ring-0border-gray-300 dark:border-zinc-700 focus:border-[#392061] dark:focus:border-[#DDC9B4]"
+                placeholder="Enter your password"
+              />
+            </div>
+          </div>
 
+          <div className="mt-8 flex flex-col gap-y-4">
             <button
               onClick={variant === "login" ? login : register}
-              className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition"
+              className="active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01]  ease-in-out transform py-4 text-white  dark:text-black bg-[#392061] dark:bg-[#DDC9B4] rounded-md font-bold text-lg"
             >
               {variant === "login" ? "Login" : "Sign up"}
             </button>
+          </div>
 
-            <p className="text-neutral-500 mt-12">
+          <div className="mt-8 flex justify-center items-center">
+            <p className="font-medium text-base text-gray-700 dark:text-gray-300">
               {variant === "login"
                 ? "First time around?"
                 : "Already have an account?"}
-              <span
-                onClick={toggleVariant}
-                className="text-white ml-1 hover:underline cursor-pointer"
-              >
-                {variant === "login" ? "Create an account" : "Login"}
-              </span>
-              .
             </p>
+            <button
+              onClick={toggleVariant}
+              className="ml-2 font-medium text-base text-[#392061] dark:text-[#DDC9B4] hover:underline
+                "
+            >
+              {variant === "login" ? "Create an account" : "Login"}
+            </button>
           </div>
         </div>
+      </div>
+      <div className="hidden relative w-1/2 h-full lg:flex items-center justify-center bg-gray-100 dark:bg-zinc-900">
+        <div className="w-60 h-60 rounded-full bg-gradient-to-tr from-[#DDC9B4] to-[#392061] animate-pulse" />
+        <div className="w-full h-1/2 absolute bottom-0 bg-gray-100/10  dark:bg-zinc-900/10 backdrop-blur-lg" />
       </div>
     </div>
   );
