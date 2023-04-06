@@ -209,7 +209,7 @@ const JobApplicationModal = (props: Props) => {
                           ${
                             errors.position
                               ? "focus:border-rose-500"
-                              : "focus:border-gray-300"
+                              : "focus:border-[#392061] dark:focus:border-[#DDC9B4]"
                           }
                         `}
                         id="position"
@@ -244,7 +244,7 @@ const JobApplicationModal = (props: Props) => {
                         ${
                           errors.company
                             ? "focus:border-rose-500"
-                            : "focus:border-gray-300"
+                            : "focus:border-[#392061] dark:focus:border-[#DDC9B4]"
                         }
                         `}
                         id="company"
@@ -276,7 +276,7 @@ const JobApplicationModal = (props: Props) => {
                         ${
                           errors.location
                             ? "focus:border-rose-500"
-                            : "focus:border-gray-300"
+                            : "focus:border-[#392061] dark:focus:border-[#DDC9B4]"
                         }
                         `}
                         id="location"

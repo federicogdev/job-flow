@@ -132,7 +132,11 @@ const JobApplicationEditForm = ({
             ? "border-rose-500"
             : "border-gray-300 dark:border-zinc-700"
         }
-        ${errors.company ? "focus:border-rose-500" : "focus:border-gray-300"}
+        ${
+          errors.company
+            ? "focus:border-rose-500"
+            : "focus:border-[#392061] dark:focus:border-[#DDC9B4]"
+        }
         `}
             id="company"
             type="text"
@@ -160,7 +164,11 @@ const JobApplicationEditForm = ({
             ? "border-rose-500"
             : "border-gray-300 dark:border-zinc-700"
         }
-        ${errors.location ? "focus:border-rose-500" : "focus:border-gray-300"}
+        ${
+          errors.location
+            ? "focus:border-rose-500"
+            : "focus:border-[#392061] dark:focus:border-[#DDC9B4]"
+        }
         `}
             id="location"
             type="text"
@@ -194,7 +202,11 @@ const JobApplicationEditForm = ({
               ? "border-rose-500"
               : "border-gray-300 dark:border-zinc-700"
           }
-          ${errors.type ? "focus:border-rose-500" : "focus:border-gray-300"}
+          ${
+            errors.type
+              ? "focus:border-rose-500"
+              : "focus:border-[#392061] dark:focus:border-[#DDC9B4]"
+          }
           `}
             >
               <option value={JobType.FULL_TIME}>Full Time</option>
