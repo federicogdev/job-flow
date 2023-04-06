@@ -35,21 +35,24 @@ const JobsPage = (props: Props) => {
   const showPagination = data?.jobs && data?.pages && data?.pages > 1;
   const showJobs = !!data?.jobs && data?.jobs.length > 0;
   return (
-    <div className="p-4 min-h-screen flex flex-col">
-      <SortPanel />
-      {isLoading ? (
-        <div className="h-full">
-          <BarLoader
-            color="red"
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
-        </div>
-      ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-1">
-          {showJobs && data.jobs.map((job) => <JobApplicationCard job={job} />)}
-        </div>
-      )}
+    <div className="p-4 min-h-screen flex flex-col justify-between">
+      <div>
+        <SortPanel />
+        {isLoading ? (
+          <div className="h-full">
+            <BarLoader
+              color="red"
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-1">
+            {showJobs &&
+              data.jobs.map((job) => <JobApplicationCard job={job} />)}
+          </div>
+        )}
+      </div>
 
       {showPagination && (
         <Pagination
