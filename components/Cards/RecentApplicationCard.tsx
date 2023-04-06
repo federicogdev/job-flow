@@ -54,7 +54,7 @@ const RecentApplicationCard = ({ job }: RecentApplicationCardProps) => {
         </div>
         <div className="pl-2">
           <p className="font-bold">{job.position}</p>
-          <p className="text-sm text-gray-700 dark:text-gray-300">
+          <p className="text-sm text-gray-700 dark:text-gray-400">
             {job.company}
           </p>
         </div>

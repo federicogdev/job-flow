@@ -1,8 +1,5 @@
-import useJobs from "@/hooks/useJobs";
-import useOverview from "@/hooks/useOverview";
 import useRecentJobs from "@/hooks/useRecentJobs";
 import Link from "next/link";
-import React from "react";
 import RecentApplicationCard from "../Cards/RecentApplicationCard";
 
 interface Props {}

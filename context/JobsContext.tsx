@@ -24,7 +24,7 @@ const contextDefaultValue: JobsContextState = {
   status: "",
   type: "",
   page: 1,
-  perPage: 18,
+  perPage: 10,
   sort: "desc",
   setStatus: () => {},
   setType: () => {},

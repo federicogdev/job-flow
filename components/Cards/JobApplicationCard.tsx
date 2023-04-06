@@ -63,11 +63,7 @@ const JobApplicationCard = ({ job }: JobApplicationCardProps) => {
   };
 
   return (
-    <div
-      // href={`/jobs/${job.id}`}
-      // onClick={() => onOpen(job.id)}
-      className="border rounded-md my-3 p-2 bg-gray-100 dark:bg-zinc-900 border-gray-300 dark:border-zinc-800 cursor-pointer"
-    >
+    <div className="border rounded-md my-3 p-2 bg-gray-100 dark:bg-zinc-900 border-gray-300 dark:border-zinc-800 cursor-pointer">
       <div className="flex pb-1 items-center justify-between border-b bg-gray-100 dark:bg-zinc-900 border-gray-300 dark:border-zinc-800">
         <div className="flex">
           <div className="p-3 mr-2 rounded-md flex items-center justify-center text-white  dark:text-black bg-[#392061] dark:bg-[#DDC9B4]">
@@ -75,13 +71,13 @@ const JobApplicationCard = ({ job }: JobApplicationCardProps) => {
           </div>
           <div>
             <p className="font-bold">{job.position}</p>
-            <p className="text-sm text-gray-700 dark:text-gray-300">
+            <p className="text-sm text-gray-700 dark:text-gray-400">
               {job.company}
             </p>
           </div>
         </div>
 
-        <p className="text-sm text-gray-700 dark:text-gray-300">
+        <p className="text-sm text-gray-700 dark:text-gray-400">
           {formatDistanceToNowStrict(new Date(job.createdAt), {
             addSuffix: true,
           })}
@@ -105,16 +101,18 @@ const JobApplicationCard = ({ job }: JobApplicationCardProps) => {
           </div>
         </div>
 
-        <div className="flex text-[#392061] dark:text-[#DDC9B4]">
+        <div className="flex">
           <div
-            className="text-sm flex items-center mr-2"
+            className="text-sm flex items-center mr-2 text-sky-600"
             onClick={() => onOpen(job.id)}
           >
-            <MdOutlineEdit />
-            Edit
+            <MdOutlineEdit size={22} />
           </div>
-          <div className="text-sm flex items-center" onClick={onDelete}>
-            <MdOutlineDelete /> Delete
+          <div
+            className="text-sm flex items-center text-rose-600"
+            onClick={onDelete}
+          >
+            <MdOutlineDelete size={22} />
           </div>
         </div>
       </div>
