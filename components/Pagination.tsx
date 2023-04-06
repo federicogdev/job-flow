@@ -23,7 +23,7 @@ const Pagination = ({
   const endIndex = Math.min(startIndex + perPage - 1, count);
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center mt-10">
       <span className="text-sm text-gray-700 dark:text-gray-400">
         Showing{" "}
         <span className="font-semibold text-gray-900 dark:text-white">
